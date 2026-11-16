@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin — Cash for Cards</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+<link rel="stylesheet" href="/assets/admin.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><span class="wm">cashforcards<span>.app</span></span></a>
+    <nav class="nav" aria-label="Admin">
+      <span style="color:#E8E6DF;font-weight:600">Submissions</span>
+      <button type="button" id="logout" class="link-btn" hidden>Sign out</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap admin">
+  <form id="login" class="login">
+    <h1>Admin sign-in</h1>
+    <div class="fld">
+      <label for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" required>
+    </div>
+    <div id="login-error" class="error" role="alert" hidden></div>
+    <button class="btn btn-dark" type="submit">Sign in</button>
+  </form>
+
+  <section id="app" hidden>
+    <div class="toolbar">
+      <div class="filters" id="filters" role="group" aria-label="Filter by status"></div>
+      <div class="toolbar-right">
+        <label class="sr" for="search">Search</label>
+        <input id="search" type="search" placeholder="Search name, email, cards…">
+        <button type="button" id="refresh" class="btn-outline">Refresh</button>
+      </div>
+    </div>
+    <p id="empty" class="empty" hidden>No submissions here yet.</p>
+    <div id="list" class="list"></div>
+  </section>
+</main>
+
+<template id="tpl">
+  <article class="sub">
+    <header class="sub-head">
+      <div>
+        <h2 class="sub-title"></h2>
+        <p class="sub-meta"></p>
+      </div>
+      <span class="status-chip"></span>
+    </header>
+    <div class="sub-body">
+      <dl class="facts"></dl>
+      <pre class="items"></pre>
+      <div class="photos"></div>
+    </div>
+    <form class="sub-edit">
+      <div class="fld"><label>Status</label><select name="status"></select></div>
+      <div class="fld"><label>Offer ($)</label><input name="offer_amount" type="number" min="0" step="0.01" inputmode="decimal"></div>
+      <div class="fld partner-fld"><label>Partner name</label><input name="partner_name" type="text" maxlength="200"></div>
+      <div class="fld notes-fld"><label>Notes</label><textarea name="notes" rows="2" maxlength="5000"></textarea></div>
+      <div class="edit-actions">
+        <a class="btn-outline reply" href="#">Email seller</a>
+        <button type="submit" class="btn btn-dark save">Save</button>
+        <span class="saved" aria-live="polite"></span>
+      </div>
+    </form>
+  </article>
+</template>
+
+<script src="/assets/admin.js" defer></script>
+</body>
+</html>
